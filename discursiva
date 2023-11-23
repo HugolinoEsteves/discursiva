@@ -1,0 +1,35 @@
+hashtable = {}
+m = 10
+
+def hashfunct(v, mh):
+    return v % mh
+
+def insert_with_collision_handling(key, value, table, hash_function):
+    index = hash_function(key, len(table))
+    if table.get(index) is None:
+        table[index] = [(key, value)]
+    else:
+        # Tratamento de colisão usando encadeamento
+        table[index].append((key, value))
+
+# Inicializando a tabela de dispersão
+for i in range(m):
+    hashtable[i] = ''
+
+# Inserindo elementos na tabela de dispersão com tratamento de colisão
+insert_with_collision_handling(235, '235', hashtable, hashfunct)
+insert_with_collision_handling(578, '578', hashtable, hashfunct)
+insert_with_collision_handling(1024, '1024', hashtable, hashfunct)
+insert_with_collision_handling(96, '96', hashtable, hashfunct)
+insert_with_collision_handling(32, '32', hashtable, hashfunct)
+
+print()
+print("Tabela de dispersão construída conforme apresentado na figura 1:")
+print(hashtable)
+
+# Inserindo um novo elemento com tratamento de colisão
+insert_with_collision_handling(18, '18', hashtable, hashfunct)
+
+print()
+print("Tabela de dispersão após a inserção proposta na figura 2 (com tratamento de colisão):")
+print(hashtable)
